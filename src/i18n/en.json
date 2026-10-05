@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "SkyCast",
+    "tagline": "Real-time weather & radar forecast"
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "cities": "Cities",
+    "radar": "Radar",
+    "compare": "Compare",
+    "settings": "Settings"
+  },
+  "hero": {
+    "feelsLike": "Feels like",
+    "high": "H",
+    "low": "L",
+    "lastUpdated": "Updated",
+    "useMyLocation": "Use my location",
+    "share": "Share",
+    "offline": "Offline Mode"
+  },
+  "tabs": {
+    "hourly": "Hourly",
+    "weekly": "7-Day Forecast",
+    "details": "Details",
+    "temperature": "Temperature",
+    "rain": "Precipitation",
+    "wind": "Wind",
+    "humidity": "Humidity"
+  },
+  "details": {
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "gusts": "Wind Gusts",
+    "pressure": "Pressure",
+    "visibility": "Visibility",
+    "dewPoint": "Dew Point",
+    "cloudCover": "Cloud Cover",
+    "uvIndex": "UV Index",
+    "airQuality": "Air Quality",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "rainfall": "Rainfall",
+    "moonPhase": "Moon Phase"
+  },
+  "onboarding": {
+    "welcome": "Weather Forecasts",
+    "subtitle": "Get accurate real-time forecasts, air quality indices, and live radar updates with beautiful glassmorphic design.",
+    "getStarted": "Get Started"
+  },
+  "settings": {
+    "title": "Settings",
+    "units": "Units & Formats",
+    "temperature": "Temperature",
+    "speed": "Wind Speed",
+    "pressure": "Pressure",
+    "timeFormat": "Time Format",
+    "theme": "Theme Mode",
+    "language": "Language",
+    "notifications": "Severe Weather Alerts",
+    "reset": "Reset to Defaults"
+  }
+}

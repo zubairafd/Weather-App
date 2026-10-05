@@ -1,0 +1,64 @@
+{
+  "app": {
+    "title": "سکائی کاسٹ",
+    "tagline": "براہ راست موسم اور رڈار پیشگوئی"
+  },
+  "nav": {
+    "home": "ہوم",
+    "search": "تلاش",
+    "cities": "شہر",
+    "radar": "رڈار",
+    "compare": "موازنہ",
+    "settings": "سیٹنگز"
+  },
+  "hero": {
+    "feelsLike": "محسوس درجہ حرارت",
+    "high": "زیادہ سے زیادہ",
+    "low": "کم سے کم",
+    "lastUpdated": "آخری اپ ڈیٹ",
+    "useMyLocation": "میری لوکیشن استعمال کریں",
+    "share": "شیئر کریں",
+    "offline": "آف لائن موڈ"
+  },
+  "tabs": {
+    "hourly": "گھنٹہ وار",
+    "weekly": "7 روزہ پیشگوئی",
+    "details": "تفصیلات",
+    "temperature": "درجہ حرارت",
+    "rain": "بارش",
+    "wind": "ہوا",
+    "humidity": "نمی"
+  },
+  "details": {
+    "humidity": "نمی",
+    "wind": "ہوا کی رفتار",
+    "gusts": "ہوا کے جھونکے",
+    "pressure": "ہوا کا دباؤ",
+    "visibility": "بصارت",
+    "dewPoint": "شبنم کا نقطہ",
+    "cloudCover": "بادلوں کی پوشش",
+    "uvIndex": "یو وی انڈیکس",
+    "airQuality": "ہوا کی کوالٹی",
+    "sunrise": "طلوعِ آفتاب",
+    "sunset": "غروبِ آفتاب",
+    "rainfall": "بارش کا حجم",
+    "moonPhase": "چاند کی حالت"
+  },
+  "onboarding": {
+    "welcome": "موسم کی پیشگوئی",
+    "subtitle": "خوبصورت ڈیزائن، ایئر کوالٹی انڈیکس اور رڈار کے ساتھ موسم کی تازہ ترین معلومات حاصل کریں۔",
+    "getStarted": "شروع کریں"
+  },
+  "settings": {
+    "title": "سیٹنگز",
+    "units": "پیمائش کی اکائیاں",
+    "temperature": "درجہ حرارت",
+    "speed": "ہوا کی رفتار",
+    "pressure": "دباؤ",
+    "timeFormat": "وقت کا فارمیٹ",
+    "theme": "تھیم",
+    "language": "زبان",
+    "notifications": "موسمی انتباہات",
+    "reset": "ری سیٹ کریں"
+  }
+}
