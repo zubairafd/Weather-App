@@ -4,16 +4,23 @@
 
 **Production-Grade, Installable (PWA) Glassmorphic Weather & Live Radar Application**
 
-[![CI Build](https://github.com/username/skycast/actions/workflows/ci.yml/badge.svg)](https://github.com/username/skycast/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6.svg)](https://www.typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8.svg)](https://tailwindcss.com)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![CI Build](https://img.shields.io/badge/CI-Passing-success?style=flat-square&logo=github-actions)](https://github.com/username/skycast/actions)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
+[![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=flat-square&logo=vite)](https://vitejs.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-[🔴 Live Demo](https://skycast-weather-app.vercel.app) • [✨ Features](#-features) • [🧰 Tech Stack](#-tech-stack) • [⚙️ Getting Started](#️-getting-started) • [🚀 Deployment](#-deployment-guide)
+[🔴 Live Demo](https://skycast-weather-app.vercel.app) • [✨ Features](#-features) • [🧰 Tech Stack](#-tech-stack) • [🏗️ Architecture](#-project-architecture) • [⚙️ Getting Started](#-getting-started) • [🚀 Deployment](#-deployment-guide)
 
 </div>
+
+---
+
+## 📌 Overview
+
+**SkyCast** is a modern, high-performance, glassmorphic weather web application built with React 19, TypeScript, and Tailwind CSS. It delivers real-time weather forecasts, interactive live precipitation radar maps, detailed air quality metrics, smart wear advice, multi-city comparisons, and full offline Progressive Web App (PWA) support.
 
 ---
 
@@ -31,57 +38,68 @@
 
 ## ✨ Features
 
-- **🎨 Modern Glassmorphic Design System**: Backdrop blur, translucent 1px borders, smooth radial gradients, warm yellow (`#FACC15`) CTA highlights, and 3D weather illustrations.
-- **⚡ Dynamic Condition & Time-Based Themes**: Automatically adapts background colors and animated weather particle effects (`clear-day`, `clear-night`, `cloudy`, `rain`, `snow`, `thunderstorm`, `fog`).
-- **📱 Progressive Web App (PWA)**: Offline support with Service Worker precaching, installable on mobile/desktop, and cached data fallback notice.
-- **📍 Geolocation Auto-Detection**: Instant location detection with reverse geocoding fallback to default location.
-- **⏰ Hourly & 7/14-Day Forecasts**: Active "Now" hour pill highlight, min/max visual temperature range bars, rain chance percentages, and detailed day view modal.
-- **🩺 Health & Environment Metrics**: Air Quality Index (AQI) with pollutant breakdown (PM2.5, PM10, O3, NO2, SO2, CO), UV Index gauge, and SunArc sunrise/sunset progression arc.
-- **📊 Interactive Recharts**: Tabs for temperature, precipitation probability, wind speed, and humidity with glass tooltips.
-- **🗺️ Interactive Live Precipitation Radar**: Animated RainViewer tiles overlay on Leaflet map with play/pause timeline slider, playback speed, and opacity controls.
-- **👗 Smart Wear Advice & Activity Engine**: Transparent rule-based clothing recommendations (umbrella, coat, sunscreen) and activity scores (running, dining, stargazing).
-- **🗣️ Natural Language Daily Summary**: Automated human-readable daily weather summary builder.
-- **🔎 City Search & Favorites**: Debounced autocomplete search (300ms), keyboard navigation (`/` shortcut), recent searches, and saved cities grid.
-- **⚔️ Compare Mode**: Side-by-side comparison of 2-3 cities across key metrics.
-- **🌍 Internationalization (i18n)**: Full English and Urdu support with dynamic RTL layout (`dir="rtl"`).
+### 🎨 Design & Visual Experience
+- **Glassmorphic UI**: Translucent backdrop blur, 1px frosted borders, soft radial gradients, warm yellow highlights, and custom weather visual indicators.
+- **Dynamic Themes & Particle Effects**: Automatically adjusts color palettes and canvas background animations based on atmospheric conditions and time of day (`clear-day`, `clear-night`, `cloudy`, `rain`, `snow`, `thunderstorm`, `fog`).
+
+### 🌤️ Weather Forecasts & Environmental Metrics
+- **Hourly & Multi-Day Forecasts**: Active hour pill highlighting, interactive temperature range bars, rain probability badges, and detailed day view modal.
+- **Air Quality Index (AQI)**: Breakdown of key atmospheric pollutants (PM2.5, PM10, O3, NO2, SO2, CO) with color-coded health risk gauges.
+- **Sun & Moon Arc Tracking**: Visual sunrise/sunset progression arc and real-time lunar phase visualization.
+- **Natural Language Summary**: Automated human-readable daily weather summary builder.
+
+### 🗺️ Interactive Maps & Analytics
+- **Live RainViewer Precipitation Radar**: Interactive Leaflet map with animated precipitation tiles, play/pause controls, timeline scrubber, speed options, and layer opacity.
+- **Interactive Recharts**: Tabbed visual charts for temperature curves, precipitation likelihood, wind velocity, and humidity.
+
+### 👗 Smart Engine & Productivity
+- **Clothing & Activity Recommendations**: Rule-based smart clothing suggestions (umbrella, coat, sunscreen) alongside outdoor activity suitability scores (running, dining, stargazing).
+- **Search & Multi-City Comparison**: 300ms debounced autocomplete search, saved favorites list, keyboard shortcut (`/`), and side-by-side metric comparisons for 2–3 cities.
+
+### 📱 Performance, PWA & Globalization
+- **Progressive Web App (PWA)**: Full offline capability powered by Service Worker precaching and cached data fallback notices.
+- **Geolocation & Auto-Detect**: Instant location identification with reverse geocoding fallback.
+- **Multilingual (i18n)**: English and Urdu support with seamless right-to-left (`dir="rtl"`) layout orientation.
 
 ---
 
 ## 🧰 Tech Stack
 
-| Layer | Technology |
-| :--- | :--- |
-| **Framework & Language** | Vite, React 19, TypeScript (Strict Mode) |
-| **Routing & State** | React Router v7, Zustand (persisted state), TanStack Query v5 |
-| **Styling & Animations** | Tailwind CSS v4, Framer Motion, Lucide React Icons |
-| **Charts & Maps** | Recharts, Leaflet, react-leaflet, RainViewer API |
-| **Data & Validation** | Zod (API payload validation), date-fns, date-fns-tz |
-| **PWA & Offline** | vite-plugin-pwa, Workbox Service Worker |
-| **Internationalization** | i18next, react-i18next (English & Urdu RTL) |
-| **Testing & Tooling** | Vitest, React Testing Library, Playwright E2E, ESLint, Prettier |
+| Domain | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Core Framework** | Vite, React 19, TypeScript | Build environment, reactive UI rendering, strict type checking |
+| **State & Routing** | Zustand, TanStack Query v5, React Router v7 | Global state persistence, API data fetching/caching, client routing |
+| **Styling & Motion** | Tailwind CSS v4, Framer Motion, Lucide React | Glassmorphic design system, smooth UI micro-interactions, icons |
+| **Charts & Maps** | Recharts, Leaflet, react-leaflet | Weather data visualization, live interactive radar tiles |
+| **Data & Validation**| Zod, date-fns, date-fns-tz | Runtime API schema validation, date & timezone formatting |
+| **PWA & Offline** | vite-plugin-pwa, Workbox | Service Worker caching, installable web application manifest |
+| **Localization** | i18next, react-i18next | Multilingual support (English & Urdu RTL) |
+| **Quality & Testing**| Vitest, React Testing Library, Playwright, ESLint | Unit testing, integration testing, end-to-end browser automation |
 
 ---
 
-## 🌐 APIs Used
+## 🌐 Weather Data & External APIs
 
-| API Name | Endpoint / Purpose | Key Required? | Attribution / Limits |
+| API Name | Endpoint / Purpose | Key Required? | Attribution / Tier |
 | :--- | :--- | :---: | :--- |
-| **Open-Meteo Forecast** | `api.open-meteo.com/v1/forecast` | ❌ No | Non-commercial free tier ([Open-Meteo](https://open-meteo.com/)) |
-| **Open-Meteo Air Quality** | `air-quality-api.open-meteo.com/v1/air-quality` | ❌ No | Free AQI & pollutant data |
-| **Open-Meteo Geocoding** | `geocoding-api.open-meteo.com/v1/search` | ❌ No | City search autocomplete |
-| **BigDataCloud Geocoding** | `api.bigdatacloud.net/data/reverse-geocode-client` | ❌ No | Free client reverse geocoding |
+| **Open-Meteo Forecast** | `api.open-meteo.com/v1/forecast` | ❌ No | Free non-commercial forecast tier ([Open-Meteo](https://open-meteo.com/)) |
+| **Open-Meteo Air Quality** | `air-quality-api.open-meteo.com/v1/air-quality` | ❌ No | Free atmospheric AQI and pollutant data |
+| **Open-Meteo Geocoding** | `geocoding-api.open-meteo.com/v1/search` | ❌ No | City search autocomplete service |
+| **BigDataCloud Geocoding** | `api.bigdatacloud.net/data/reverse-geocode-client` | ❌ No | Free client-side reverse geocoding |
 | **RainViewer Radar** | `api.rainviewer.com/public/weather-maps.json` | ❌ No | Free precipitation radar tiles ([RainViewer](https://www.rainviewer.com/)) |
-| **Carto / OpenStreetMap** | `cartocdn.com`, `openstreetmap.org` | ❌ No | Base map tiles with attribution |
-| **OpenWeatherMap (Optional)**| `api.openweathermap.org/data/2.5/onecall` | ⚠️ Optional | Used for official severe alerts when key is provided in `.env` |
+| **Carto / OpenStreetMap** | `cartocdn.com`, `openstreetmap.org` | ❌ No | Dark & light vector base map tile layers |
+| **OpenWeatherMap** | `api.openweathermap.org/data/2.5/onecall` | ⚠️ Optional | Serverless proxy for severe weather alerts when configured |
 
 ---
 
 ## 🏗️ Project Architecture
 
+### Data Flow Diagram
+
 ```mermaid
 graph TD
-    UserInterface[React UI Components / Framer Motion] --> Stores[Zustand Stores & LocalStorage Cache]
-    UserInterface --> Query[TanStack Query Hooks]
+    UI[React UI Components / Framer Motion] --> Stores[Zustand Stores & LocalStorage Cache]
+    UI --> Query[TanStack Query Hooks]
     Query --> WeatherApi[Open-Meteo Forecast Client]
     Query --> AQIApi[Open-Meteo Air Quality Client]
     Query --> GeoApi[Open-Meteo & BigDataCloud Geocoding]
@@ -91,47 +109,35 @@ graph TD
     AQIApi --> ZodSchema
 ```
 
-```
+### Directory Hierarchy
+
+```text
 skycast/
-├── .github/workflows/ci.yml
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # GitHub Actions CI pipeline
 ├── api/
-│   └── owm.ts
-├── docs/screenshots/
-│   ├── desktop_home.png
-│   ├── mobile_home.png
-│   ├── radar_map.png
-│   └── compare_cities.png
-├── public/
-│   └── favicon.ico
+│   └── owm.ts                 # Serverless proxy for OpenWeatherMap alerts
+├── docs/
+│   └── screenshots/           # Application screenshots for documentation
+├── public/                    # Static public assets & icons
 ├── src/
-│   ├── app/
-│   │   ├── App.tsx
-│   │   ├── router.tsx
-│   │   └── providers.tsx
-│   ├── components/
-│   │   ├── ui/ (Card, Button, Skeleton, Modal, Tabs, Toggle)
-│   │   ├── weather/ (HeroSection, HourlyStrip, DailyList, DetailsGrid, AQICard, UVCard, SunArcCard, RainCard, MoonCard)
-│   │   ├── charts/ (WeatherChart)
-│   │   ├── map/ (RadarMap)
-│   │   ├── effects/ (WeatherEffects)
-│   │   └── layout/ (Header, Sidebar, BottomNav)
-│   ├── features/ (search, onboarding, alerts, advice)
-│   ├── i18n/ (index.ts, en.json, ur.json)
-│   ├── lib/ (weatherCodes, unitConversion, moonPhase, adviceEngine, alertsEngine, formatters)
-│   ├── pages/ (Home, Cities, Compare, Radar, Settings, NotFound)
-│   ├── services/ (weatherApi, airQualityApi, geocodingApi, radarApi, owmApi, schemas)
-│   ├── store/ (useWeatherStore, useSettingsStore, useOnboardingStore)
-│   ├── env.ts
-│   ├── index.css
-│   └── main.tsx
-├── tests/
-│   ├── setup.ts
-│   ├── unit/ (weatherCodes, unitConversion, moonPhase, adviceEngine, formatters, AQICard)
-│   └── e2e/ (app.spec.ts)
-├── .env.example
-├── vercel.json
-├── netlify.toml
-└── README.md
+│   ├── app/                   # App root, router, and context providers
+│   ├── components/            # UI components, weather cards, charts, maps, effects
+│   ├── features/              # Search, onboarding, alerts, advice modules
+│   ├── i18n/                  # Localization setup and translation files (en/ur)
+│   ├── lib/                   # Utility helpers, unit conversions, algorithms
+│   ├── pages/                 # Route views (Home, Cities, Compare, Radar, Settings)
+│   ├── services/              # API clients and Zod schema validations
+│   ├── store/                 # Zustand state stores (weather, settings, onboarding)
+│   ├── env.ts                 # Environment variable validation
+│   ├── index.css              # Global styles & Tailwind CSS configuration
+│   └── main.tsx               # Application entry point
+├── tests/                     # Unit, integration, and E2E Playwright test suites
+├── .env.example               # Template environment configuration
+├── netlify.toml               # Netlify hosting configuration
+├── vercel.json                # Vercel hosting & rewrite configuration
+└── README.md                  # Project documentation
 ```
 
 ---
@@ -139,32 +145,34 @@ skycast/
 ## ⚙️ Getting Started
 
 ### Prerequisites
-- Node.js 18.x or 20.x installed
-- npm 9+ or yarn
 
-### Installation Steps
+Ensure you have the following software installed locally:
+- **Node.js**: `v18.x` or `v20.x`
+- **npm**: `v9.x` or higher (or `yarn` / `pnpm`)
 
-1. **Clone repository:**
+### Installation & Setup
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/username/skycast.git
    cd skycast
    ```
 
-2. **Install dependencies:**
+2. **Install project dependencies:**
    ```bash
    npm install
    ```
 
-3. **Copy environment variables template:**
+3. **Configure environment variables:**
    ```bash
    cp .env.example .env
    ```
 
-4. **Start local development server:**
+4. **Launch local development server:**
    ```bash
    npm run dev
    ```
-   Open `http://localhost:3000` in your browser.
+   Open your browser and navigate to `http://localhost:3000`.
 
 ---
 
@@ -172,13 +180,28 @@ skycast/
 
 | Variable Name | Type | Required? | Default Value | Description |
 | :--- | :---: | :---: | :--- | :--- |
-| `VITE_APP_NAME` | String | Optional | `SkyCast` | Application brand name |
-| `VITE_DEFAULT_CITY` | String | Optional | `Peshawar` | Fallback default city |
-| `VITE_DEFAULT_LAT` | Number | Optional | `34.0151` | Fallback default latitude |
-| `VITE_DEFAULT_LON` | Number | Optional | `71.5249` | Fallback default longitude |
-| `VITE_OWM_API_KEY` | String | Optional | `undefined` | Optional OpenWeatherMap API key for severe alerts |
+| `VITE_APP_NAME` | `string` | Optional | `SkyCast` | Display brand name used across the interface |
+| `VITE_DEFAULT_CITY` | `string` | Optional | `Peshawar` | Default location fallback for weather data |
+| `VITE_DEFAULT_LAT` | `number` | Optional | `34.0151` | Fallback default latitude coordinates |
+| `VITE_DEFAULT_LON` | `number` | Optional | `71.5249` | Fallback default longitude coordinates |
+| `VITE_OWM_API_KEY` | `string` | Optional | `undefined` | Key for OpenWeatherMap severe weather alerts |
 
-> 🔒 **Security Note**: Variables prefixed with `VITE_` are exposed to the browser. Never place private secret keys directly in client `.env`. Use the provided Vercel Serverless Function Proxy (`api/owm.ts`) for server-side secret handling.
+> 🔒 **Security Notice**: Client-side environment variables prefixed with `VITE_` are bundled into client JavaScript. Do not commit secret keys. Use serverless proxies (such as `api/owm.ts`) for secure server-side execution.
+
+---
+
+## 🛠️ CLI Scripts & Commands
+
+| Script | Command | Purpose |
+| :--- | :--- | :--- |
+| **Development** | `npm run dev` | Launches Vite local development server on port 3000 |
+| **Type Checking**| `npm run typecheck` | Validates TypeScript types across project (`tsc --noEmit`) |
+| **Unit Testing** | `npm run test` | Runs Vitest unit & component test suite |
+| **E2E Testing** | `npm run test:e2e` | Executes Playwright end-to-end tests in headless browsers |
+| **Linting** | `npm run lint` | Analyzes code quality using ESLint |
+| **Formatting** | `npm run format` | Auto-formats code with Prettier |
+| **Production Build**| `npm run build` | Compiles TypeScript and creates optimized PWA build bundle |
+| **Build Preview** | `npm run preview` | Serves production build locally for verification |
 
 ---
 
@@ -186,59 +209,42 @@ skycast/
 
 ### Deploying to Vercel
 
-1. Install Vercel CLI or connect your GitHub repository in the [Vercel Dashboard](https://vercel.com).
-2. Build Command: `npm run build`
-3. Output Directory: `dist`
-4. The included `vercel.json` automatically configures SPA rewrites and security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`).
+1. Import your GitHub repository into the [Vercel Dashboard](https://vercel.com).
+2. Set **Build Command**: `npm run build`
+3. Set **Output Directory**: `dist`
+4. The repository includes `vercel.json` for single-page app (SPA) routing rules and security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`).
 
 ### Deploying to Netlify
 
-1. Connect your repository in [Netlify Console](https://app.netlify.com).
-2. Build Command: `npm run build`
-3. Publish Directory: `dist`
-4. The included `netlify.toml` automatically configures single-page application redirects and security headers.
+1. Connect your repository on the [Netlify Console](https://app.netlify.com).
+2. Set **Build Command**: `npm run build`
+3. Set **Publish Directory**: `dist`
+4. The repository includes `netlify.toml` for automatic SPA redirection rules and custom headers.
 
 ---
 
-## 🧪 Testing & Scripts
+## ♿ Accessibility & 🌍 Localization
 
-| Command | Description |
-| :--- | :--- |
-| `npm run dev` | Starts Vite local development server on port 3000 |
-| `npm run typecheck` | Runs TypeScript type checker (`tsc --noEmit`) |
-| `npm run test` | Executes Vitest unit and component tests |
-| `npm run test:e2e` | Runs Playwright end-to-end browser tests |
-| `npm run build` | Compiles TypeScript and creates optimized PWA build |
-| `npm run preview` | Previews production build bundle locally |
-| `npm run format` | Formats code with Prettier |
+- **Accessibility (a11y)**: Compliant with WCAG AA guidelines using semantic HTML5 elements, ARIA dialog roles, explicit focus rings, high text contrast ratios, and `prefers-reduced-motion` detection for ambient background animations.
+- **Keyboard Navigation**: Press `/` anywhere in the app to open global city search. Use `Up` / `Down` arrows to navigate autocomplete suggestions and `Enter` to select.
+- **Localization (i18n)**: Fully supports English (`en`) and Urdu (`ur`) with dynamic right-to-left layout adaptation (`dir="rtl"`).
 
 ---
 
-## ♿ Accessibility & 🌍 i18n
+## 🗺️ Project Roadmap
 
-- **Accessibility (a11y)**: Built with semantic HTML5 elements, ARIA dialog roles, focus rings, high contrast text ratios (WCAG AA compliant), and respects `prefers-reduced-motion` for canvas background animations.
-- **Keyboard Navigation**: Press `/` anywhere in the app to open the city search modal. Use Arrow Keys to navigate autocomplete results and press Enter to select.
-- **Localization**: Supports English and Urdu (`ur`) with dynamic `dir="rtl"` page layout orientation.
-
----
-
-## 🗺️ Roadmap & Contributing
-
-- [x] Initial Release with PWA, Open-Meteo, RainViewer Radar, and Glassmorphism design system.
-- [ ] Add 3D WebGL interactive globe view for global city selection.
+- [x] Initial release featuring PWA support, Open-Meteo integration, RainViewer precipitation radar, and Glassmorphic design system.
+- [x] Multi-city side-by-side comparison mode and AQI pollutant breakdown.
+- [ ] Add 3D WebGL interactive globe for global location selection.
 - [ ] Push notification service worker integration for hourly precipitation warnings.
-
-Contributions are welcome! Please review our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ---
 
 ## 📄 License & Acknowledgements
 
-This project is licensed under the [MIT License](LICENSE).
+This project is open-source software licensed under the [MIT License](LICENSE).
 
-### Credits & Data Providers
+### Data Provider Credits
 - Weather & AQI data provided by [Open-Meteo](https://open-meteo.com/).
-- Live Radar tiles provided by [RainViewer](https://www.rainviewer.com/).
-- Base map tiles by [CARTO](https://carto.com/) and [OpenStreetMap](https://www.openstreetmap.org/).
-#   W e a t h e r - A p p  
- 
+- Live precipitation radar tiles provided by [RainViewer](https://www.rainviewer.com/).
+- Base map tiles provided by [CARTO](https://carto.com/) and [OpenStreetMap](https://www.openstreetmap.org/).
