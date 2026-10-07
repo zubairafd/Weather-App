@@ -31,15 +31,12 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
       setTimeout(() => inputRef.current?.focus(), 100)
     } else {
       setQuery('')
-      setResults([])
     }
   }, [isOpen])
 
   // Debounced search (300ms)
   useEffect(() => {
     if (!query || query.trim().length < 2) {
-      setResults([])
-      setLoading(false)
       return
     }
 
@@ -63,6 +60,8 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
     }
   }, [query])
 
+  const displayedResults = !query || query.trim().length < 2 ? [] : results
+
   const handleSelectCity = (city: LocationData) => {
     setCurrentLocation(city)
     addRecentSearch(city)
@@ -71,17 +70,17 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (results.length === 0) return
+    if (displayedResults.length === 0) return
 
     if (e.key === 'ArrowDown') {
       e.preventDefault()
-      setSelectedIndex((prev) => (prev + 1) % results.length)
+      setSelectedIndex((prev) => (prev + 1) % displayedResults.length)
     } else if (e.key === 'ArrowUp') {
       e.preventDefault()
-      setSelectedIndex((prev) => (prev - 1 + results.length) % results.length)
+      setSelectedIndex((prev) => (prev - 1 + displayedResults.length) % displayedResults.length)
     } else if (e.key === 'Enter') {
       e.preventDefault()
-      const selected = results[selectedIndex]
+      const selected = displayedResults[selectedIndex]
       if (selected) handleSelectCity(selected)
     }
   }
@@ -107,9 +106,9 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Results Autocomplete List */}
-        {results.length > 0 && (
+        {displayedResults.length > 0 && (
           <div className="max-h-60 overflow-y-auto space-y-1 rounded-2xl bg-slate-800/80 p-2 border border-white/10">
-            {results.map((city, idx) => (
+            {displayedResults.map((city, idx) => (
               <button
                 key={`${city.latitude}-${city.longitude}`}
                 onClick={() => handleSelectCity(city)}

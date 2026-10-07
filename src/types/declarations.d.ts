@@ -6,6 +6,7 @@ declare module '*.css' {
   export default content
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'react-leaflet' {
   export const MapContainer: any
   export const TileLayer: any
