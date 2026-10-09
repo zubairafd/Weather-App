@@ -2,26 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0F172A" />
-    <meta
-      name="description"
-      content="SkyCast - Modern glassmorphic PWA weather web app with real-time forecasts, air quality index, live precipitation radar, and severe weather alerts."
-    />
-    <meta property="og:title" content="SkyCast - Weather Forecast & Live Radar" />
-    <meta
-      property="og:description"
-      content="Real-time glassmorphic weather application with 7-day forecast, air quality, live radar map, and severe alerts."
-    />
-    <meta property="og:image" content="favicon.svg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <title>SkyCast - Modern Weather & Live Radar</title>
+    <title>SkyCast - Redirecting...</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafgraph/spa-github-pages
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.host +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
   </head>
-  <body className="bg-slate-950 text-white selection:bg-yellow-400 selection:text-slate-950">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body>
   </body>
 </html>

@@ -3,8 +3,10 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import path from 'path'
 
+const basePath = process.env.VITE_BASE_PATH || '/'
+
 export default defineConfig({
-  base: '/Weather-App/',
+  base: basePath,
   plugins: [
     react(),
     VitePWA({
@@ -18,6 +20,9 @@ export default defineConfig({
         background_color: '#0F172A',
         display: 'standalone',
         orientation: 'portrait-primary',
+        start_url: './',
+        scope: './',
+        id: './',
         icons: [
           {
             src: 'favicon.svg',
@@ -35,6 +40,10 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
+        navigateFallback: 'index.html',
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api\.open-meteo\.com\/.*/i,
