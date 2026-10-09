@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, master]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -32,8 +33,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build Production Bundle
+        env:
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
         run: npm run build
+
+      - name: Copy index.html to 404.html for SPA Fallback
+        run: cp dist/index.html dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
