@@ -5,14 +5,14 @@
 **Production-Grade, Installable (PWA) Glassmorphic Weather & Live Radar Application**
 
 [![CI Build](https://img.shields.io/badge/CI-Passing-success?style=flat-square&logo=github-actions)](https://github.com/username/skycast/actions)
+[![Deploy to GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-blue?style=flat-square&logo=githubpages)](https://username.github.io/Weather-App/)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=flat-square&logo=vite)](https://vitejs.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-[🔴 Live Demo](https://skycast-weather-app.vercel.app) • [✨ Features](#-features) • [🧰 Tech Stack](#-tech-stack) • [🏗️ Architecture](#-project-architecture) • [⚙️ Getting Started](#-getting-started) • [🚀 Deployment](#-deployment-guide)
+[🔴 Live Demo](https://username.github.io/Weather-App/) • [✨ Features](#-features) • [🧰 Tech Stack](#-tech-stack) • [🏗️ Architecture](#-project-architecture) • [⚙️ Getting Started](#-getting-started) • [🚀 Deployment](#-deployment-guide)
 
 </div>
 
@@ -109,37 +109,6 @@ graph TD
     AQIApi --> ZodSchema
 ```
 
-### Directory Hierarchy
-
-```text
-skycast/
-├── .github/
-│   └── workflows/
-│       └── ci.yml             # GitHub Actions CI pipeline
-├── api/
-│   └── owm.ts                 # Serverless proxy for OpenWeatherMap alerts
-├── docs/
-│   └── screenshots/           # Application screenshots for documentation
-├── public/                    # Static public assets & icons
-├── src/
-│   ├── app/                   # App root, router, and context providers
-│   ├── components/            # UI components, weather cards, charts, maps, effects
-│   ├── features/              # Search, onboarding, alerts, advice modules
-│   ├── i18n/                  # Localization setup and translation files (en/ur)
-│   ├── lib/                   # Utility helpers, unit conversions, algorithms
-│   ├── pages/                 # Route views (Home, Cities, Compare, Radar, Settings)
-│   ├── services/              # API clients and Zod schema validations
-│   ├── store/                 # Zustand state stores (weather, settings, onboarding)
-│   ├── env.ts                 # Environment variable validation
-│   ├── index.css              # Global styles & Tailwind CSS configuration
-│   └── main.tsx               # Application entry point
-├── tests/                     # Unit, integration, and E2E Playwright test suites
-├── .env.example               # Template environment configuration
-├── netlify.toml               # Netlify hosting configuration
-├── vercel.json                # Vercel hosting & rewrite configuration
-└── README.md                  # Project documentation
-```
-
 ---
 
 ## ⚙️ Getting Started
@@ -176,17 +145,31 @@ Ensure you have the following software installed locally:
 
 ---
 
-## 🔐 Environment Variables
+## 🚀 Deployment Guide
 
-| Variable Name | Type | Required? | Default Value | Description |
-| :--- | :---: | :---: | :--- | :--- |
-| `VITE_APP_NAME` | `string` | Optional | `SkyCast` | Display brand name used across the interface |
-| `VITE_DEFAULT_CITY` | `string` | Optional | `Peshawar` | Default location fallback for weather data |
-| `VITE_DEFAULT_LAT` | `number` | Optional | `34.0151` | Fallback default latitude coordinates |
-| `VITE_DEFAULT_LON` | `number` | Optional | `71.5249` | Fallback default longitude coordinates |
-| `VITE_OWM_API_KEY` | `string` | Optional | `undefined` | Key for OpenWeatherMap severe weather alerts |
+### Deploying to GitHub Pages
 
-> 🔒 **Security Notice**: Client-side environment variables prefixed with `VITE_` are bundled into client JavaScript. Do not commit secret keys. Use serverless proxies (such as `api/owm.ts`) for secure server-side execution.
+1. Open your repository on GitHub.
+2. Go to **Settings** > **Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push your changes to the `main` (or `master`) branch. The automated workflow `.github/workflows/deploy.yml` will build and deploy the app.
+5. Access your live application at:
+   `https://<username>.github.io/<repo-name>/` (e.g. `https://username.github.io/Weather-App/`)
+
+---
+
+## 🔍 Troubleshooting Blank Page on Sub-path Deployments
+
+If a Vite + React PWA displays a blank white screen when deployed to GitHub Pages or sub-path URLs, here are the root causes and how SkyCast fixes them:
+
+| Symptom / Cause | Root Cause | Solution Implemented |
+| :--- | :--- | :--- |
+| **404 Asset Errors (`/assets/...`)** | Hardcoded base path in `vite.config.ts` | Configured `base: process.env.VITE_BASE_PATH || '/'` dynamically. CI passes `VITE_BASE_PATH: /<repo-name>/`. |
+| **Blank Screen on Page Refresh (`/radar`)** | GitHub Pages lacks native SPA routing fallback | Added `404.html` SPA redirect handler (`spa-github-pages`) and copied `index.html` to `404.html` in CI build. |
+| **Module Crash on Startup** | Strict Zod env validation failing when `.env` is absent in CI | Wrapped env parsing (`src/env.ts`) in safe try/catch returning defaults without throwing before React mounts. |
+| **Silent Uncaught JS Errors** | Missing React Error Boundary | Wrapped application root with `ErrorBoundary` and global `onerror` listeners to display a fallback UI with a reload button. |
+| **Broken PWA Service Worker** | Inconsistent manifest scope and SW navigate fallback | Set PWA `start_url: './'`, `scope: './'`, `navigateFallback: 'index.html'`, `cleanupOutdatedCaches: true`, and `clientsClaim: true`. |
+| **Empty Flash While Loading JS** | `#root` element is completely empty | Added initial inline glassmorphic loading spinner and `<noscript>` fallback directly inside `#root`. |
 
 ---
 
@@ -205,46 +188,6 @@ Ensure you have the following software installed locally:
 
 ---
 
-## 🚀 Deployment Guide
-
-### Deploying to Vercel
-
-1. Import your GitHub repository into the [Vercel Dashboard](https://vercel.com).
-2. Set **Build Command**: `npm run build`
-3. Set **Output Directory**: `dist`
-4. The repository includes `vercel.json` for single-page app (SPA) routing rules and security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`).
-
-### Deploying to Netlify
-
-1. Connect your repository on the [Netlify Console](https://app.netlify.com).
-2. Set **Build Command**: `npm run build`
-3. Set **Publish Directory**: `dist`
-4. The repository includes `netlify.toml` for automatic SPA redirection rules and custom headers.
-
----
-
-## ♿ Accessibility & 🌍 Localization
-
-- **Accessibility (a11y)**: Compliant with WCAG AA guidelines using semantic HTML5 elements, ARIA dialog roles, explicit focus rings, high text contrast ratios, and `prefers-reduced-motion` detection for ambient background animations.
-- **Keyboard Navigation**: Press `/` anywhere in the app to open global city search. Use `Up` / `Down` arrows to navigate autocomplete suggestions and `Enter` to select.
-- **Localization (i18n)**: Fully supports English (`en`) and Urdu (`ur`) with dynamic right-to-left layout adaptation (`dir="rtl"`).
-
----
-
-## 🗺️ Project Roadmap
-
-- [x] Initial release featuring PWA support, Open-Meteo integration, RainViewer precipitation radar, and Glassmorphic design system.
-- [x] Multi-city side-by-side comparison mode and AQI pollutant breakdown.
-- [ ] Add 3D WebGL interactive globe for global location selection.
-- [ ] Push notification service worker integration for hourly precipitation warnings.
-
----
-
 ## 📄 License & Acknowledgements
 
 This project is open-source software licensed under the [MIT License](LICENSE).
-
-### Data Provider Credits
-- Weather & AQI data provided by [Open-Meteo](https://open-meteo.com/).
-- Live precipitation radar tiles provided by [RainViewer](https://www.rainviewer.com/).
-- Base map tiles provided by [CARTO](https://carto.com/) and [OpenStreetMap](https://www.openstreetmap.org/).
